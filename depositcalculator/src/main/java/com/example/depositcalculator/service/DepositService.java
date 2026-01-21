@@ -20,8 +20,9 @@ public class DepositService {
         // total = amount * (1 + monthlyRate)^months
         BigDecimal base = BigDecimal.ONE.add(monthlyRate); // (1 + monthlyRate)
         BigDecimal multiplier = base.pow(request.getMonths(), MathContext.DECIMAL64); // (1 + monthlyRate)^months
-        BigDecimal total = request.getAmount().multiply(multiplier); // amount * (1 + monthlyRate)^months
+        BigDecimal total = request.getAmount().multiply(multiplier); // общая сумма
         
+        // total - amount
         BigDecimal profit = total.subtract(request.getAmount()); 
         
         return new DepositResponse(total, profit);
