@@ -14,7 +14,7 @@ interface DepositResponse {
 }
 
 const App: React.FC = () => {
-  // Состояние формы - теперь храним как строки для точного ввода
+  // Состояние формыа
   const [formData, setFormData] = useState({
     amount: '100000',
     months: '12',
@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
   // Функция для преобразования строки в число с проверкой
   const parseNumber = (value: string): number => {
-    // Заменяем запятую на точку для российского формата
+    // Запятая на точку 
     const normalizedValue = value.replace(',', '.');
     const num = parseFloat(normalizedValue);
     return isNaN(num) ? 0 : num;
@@ -52,9 +52,9 @@ const App: React.FC = () => {
     if (!formData.amount || amountNum <= 0) {
       newErrors.amount = 'Сумма должна быть больше 0';
     } else if (amountNum < 1000) {
-      newErrors.amount = 'Минимальная сумма: 1 000 ₽';
+      newErrors.amount = 'Минимальная сумма: 1 000 рублей';
     } else if (amountNum > 10000000) {
-      newErrors.amount = 'Максимальная сумма: 10 000 000 ₽';
+      newErrors.amount = 'Максимальная сумма: 10 000 000 рублей';
     }
 
     if (!formData.months || monthsNum <= 0) {
@@ -89,7 +89,7 @@ const App: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Подготавливаем данные для отправки
+      // Data для отправки
       const requestData: DepositRequest = {
         amount: parseNumber(formData.amount),
         months: parseNumber(formData.months),
@@ -128,7 +128,7 @@ const App: React.FC = () => {
 
   // Обработка изменения полей ввода
   const handleInputChange = (field: string, value: string) => {
-    // Разрешаем только цифры, точку и запятую
+    // Разрешения на символы
     const cleanedValue = value.replace(/[^0-9.,]/g, '');
     
     setFormData(prev => ({
@@ -153,13 +153,13 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      {/* Заголовок */}
+      {/* заголовок */}
       <div className="app-title">
         <h1>Калькулятор вклада</h1>
         <p>Рассчитайте доходность вклада с капитализацией процентов</p>
       </div>
 
-      {/* Сообщение об ошибке */}
+      {/* ошибка */}
       {error && (
         <div className="error-message">
           <span>⚠️</span>
@@ -167,9 +167,9 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Форма */}
+      {/*форма */}
       <form className="calculator-form" onSubmit={handleSubmit}>
-        {/* Поле: Сумма вклада */}
+        {/*сумма вклада */}
         <div className="form-group">
           <label className="form-label" htmlFor="amount">
             Сумма вклада (₽)
@@ -194,7 +194,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Поле: Срок вклада */}
+        {/* срок вклада */}
         <div className="form-group">
           <label className="form-label" htmlFor="months">
             Срок вклада (месяцев)
@@ -221,7 +221,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Поле: Процентная ставка */}
+        {/*процентная ставка */}
         <div className="form-group">
           <label className="form-label" htmlFor="rate">
             Годовая процентная ставка (%)
@@ -246,7 +246,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Кнопка отправки */}
+        {/*кнопка отправки */}
         <button
           type="submit"
           className="submit-button"
@@ -263,7 +263,7 @@ const App: React.FC = () => {
         </button>
       </form>
 
-      {/* Результаты */}
+      {/*результаты */}
       {result && (
         <div className="results-container">
           <h2 className="results-title">Результаты расчета</h2>
@@ -298,7 +298,7 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Информация о формуле */}
+      {/*информация о формуле для удобства*/}
       <div className="formula-info">
         <h3>Как рассчитывается доход?</h3>
         <p>
