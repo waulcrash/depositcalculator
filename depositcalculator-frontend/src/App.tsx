@@ -16,9 +16,9 @@ interface DepositResponse {
 const App: React.FC = () => {
   // Состояние формыа
   const [formData, setFormData] = useState({
-    amount: '100000',
-    months: '12',
-    rate: '8.5',
+    amount: '1000',
+    months: '1',
+    rate: '1',
   });
 
   // Состояние результатов
@@ -172,7 +172,7 @@ const App: React.FC = () => {
         {/*сумма вклада */}
         <div className="form-group">
           <label className="form-label" htmlFor="amount">
-            Сумма вклада (₽)
+            Сумма вклада (рубли)
           </label>
           <input
             id="amount"
@@ -189,9 +189,6 @@ const App: React.FC = () => {
               <span>{errors.amount}</span>
             </div>
           )}
-          <div style={{ fontSize: '0.85rem', color: '#666', marginTop: '5px' }}>
-            Примеры: 100000, 50000.50, 1 000 000
-          </div>
         </div>
 
         {/* срок вклада */}
@@ -241,9 +238,6 @@ const App: React.FC = () => {
               <span>{errors.rate}</span>
             </div>
           )}
-          <div style={{ fontSize: '0.85rem', color: '#666', marginTop: '5px' }}>
-            Примеры: 8.5, 7.25, 10.75
-          </div>
         </div>
 
         {/*кнопка отправки */}
@@ -307,10 +301,6 @@ const App: React.FC = () => {
         <div className="formula">
           Итог = Сумма × (1 + Ставка/100/12)<sup>Срок_в_месяцах</sup>
         </div>
-        <p className="formula-note">
-          * Капитализация означает, что проценты начисляются не только на начальную сумму, 
-          но и на уже начисленные проценты.
-        </p>
       </div>
     </div>
   );
