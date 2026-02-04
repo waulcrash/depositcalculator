@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-// Типы данных
+
 interface DepositRequest {
   amount: number;
   months: number;
@@ -14,34 +14,34 @@ interface DepositResponse {
 }
 
 const App: React.FC = () => {
-  // Состояние формыа
+ 
   const [formData, setFormData] = useState({
     amount: '1000',
     months: '1',
     rate: '1',
   });
 
-  // Состояние результатов
+  // резы
   const [result, setResult] = useState<DepositResponse | null>(null);
   
-  // Состояние загрузки
+  // лоуд
   const [isLoading, setIsLoading] = useState(false);
   
-  // Состояние ошибок
+  // ошибки
   const [error, setError] = useState<string | null>(null);
   
-  // Состояние валидации
+  // валидация состояние
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Функция для преобразования строки в число с проверкой
+  // строки в число
   const parseNumber = (value: string): number => {
-    // Запятая на точку 
+    
     const normalizedValue = value.replace(',', '.');
     const num = parseFloat(normalizedValue);
     return isNaN(num) ? 0 : num;
   };
 
-  // Валидация формы
+  // валидация
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -77,7 +77,7 @@ const App: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Обработка отправки формы
+  // отправка
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -126,9 +126,9 @@ const App: React.FC = () => {
     }
   };
 
-  // Обработка изменения полей ввода
+  // изменения полей
   const handleInputChange = (field: string, value: string) => {
-    // Разрешения на символы
+    
     const cleanedValue = value.replace(/[^0-9.,]/g, '');
     
     setFormData(prev => ({
@@ -136,14 +136,14 @@ const App: React.FC = () => {
       [field]: cleanedValue,
     }));
     
-    // Очищаем ошибку при вводе
+    
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
     if (error) setError(null);
   };
 
-  // Форматирование чисел
+  // форматирование
   const formatCurrency = (amount: number): string => {
     return new Intl.NumberFormat('ru-RU', {
       minimumFractionDigits: 2,
